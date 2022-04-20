@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Login</title>
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="expires" content="-1" />	
+<meta content='width=device-width, user-scalable=no' name='viewport'/>
+<link rel="stylesheet" href="login.css" media="screen">
+ 
+
+</head>
+<body class='login'>
+$(if chap-id)
+	<form name="sendin" action="$(link-login-only)" method="post">
+		<input type="hidden" name="username" />
+		<input type="hidden" name="password" />
+		<input type="hidden" name="dst" value="$(link-orig)" />
+		<input type="hidden" name="popup" value="true" />
+	</form>
+	
+	<script type="text/javascript" src="/md5.js"></script>
+	<script type="text/javascript">
+	<!--
+	    function doLogin() {
+		document.sendin.username.value = document.login.username.value;
+		document.sendin.password.value = hexMD5('$(chap-id)' + document.login.password.value + '$(chap-challenge)');
+		document.sendin.submit();
+		return false;
+	    }
+	//-->
+	</script>
+$(endif)
+
+
+<form class="vertical-form" name="login" action="$(link-login-only)" method="post" background="#A03472"
+	$(if chap-id) onSubmit="return doLogin()" $(endif)>
+<input type="hidden" name="dst" value="$(link-orig)" />
+<input type="hidden" name="popup" value="true" />
+
+<div class="box_vermelho">
+	<div id="box">
+		<div id="topbox">
+			<img src="img/ilustracao.png" alt="" class="ilus" />
+		</div>
+	</div>
+
+	<div id="lado_vermelho">
+		<div class="formu">
+			<div class="logo_text">
+				<img src="img/logo.png" alt="logo" class="logo" />
+				<p class="text_respon">FAÇA O SEU LOGIN PARA ACESSAR A REDE</p>
+			</div>
+			<div class="email">
+				<p class="titulo">Email</p>
+				<input name="username" type="text" value="$(username)" placeholder="" class="puts" />
+			</div>
+
+			<div class="senha">
+				<p class="titulo">Senha</p>
+				<input autocomplete="off" name="password" type="password" label="false" placeholder="" class="puts" />
+			</div>
+
+			<button type="submit" value="Conectar" class="botao" id="botao_1"><a
+					href="alogin.html"></a>Conectar</button>
+			<button type="submit" value="Não tem um cadastro?" class="botao" id="botao_2">
+				<a href="cadastro.html">Não tem um cadastro?</a></button>
+		</div>
+		<div class="img_respon">
+			<img src="img/respon.png" alt="">
+		</div>
+
+	</div>
+
+</div>
+
+<div class='footer'>
+<p>$(if trial == 'yes')Free trial available, <a href="$(link-login-only)?dst=$(link-orig-esc)&amp;username=T-$(mac-esc)">click here</a>.$(endif)</p>
+<p>$(if error)<span style="color: #FF8080; font-size: 16px">$(error)</span>$(endif)</p>
+<br>
+<p>
+</p>
+</div>
+
+</form>
+
+<script type="text/javascript">
+
+  document.login.username.focus();
+//-->
+</script>
+</body>
+</html>
